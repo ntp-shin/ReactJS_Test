@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
+const gifts = ['Hoa', 'Keo', 'Tien', 'Bong'];
 function App() {
+  //hook
+  const [info, setInfo] = useState({
+    name: 'Nguyen Van A',
+    age: '20',
+    address: 'Hanoi',
+  });
+
+  const handleUpdate = () => {
+    setInfo({
+      ...info,
+      bio: 'Hello World',
+    });
+  }
+
+  const [gift, setGift] = useState('Chua co phan thuong');
+  const handleGift = () => {
+    var random = Math.floor(Math.random() * gifts.length);
+    setGift(gifts[random]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{padding: 20}}>
+      <h1>{JSON.stringify(info)}</h1>
+      <button onClick={handleUpdate}>Update</button>
+      <h2>{gift}</h2>
+      <button onClick={handleGift}>Random Gift</button>
     </div>
   );
 }
